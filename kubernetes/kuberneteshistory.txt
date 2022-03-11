@@ -1,0 +1,317 @@
+    1  sudo update
+    2  apt update
+    3  apt install awscli -y
+    4  aws s3 ls
+    5  aws s3 mb s3://k8-buckettt-123
+    6  curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+    7  curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+    8  echo "$(<kubectl.sha256)  kubectl" | sha256sum --check
+    9  sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+   10  nslookup -type=ns kops.team141.tk
+   11  ls -a
+   12  chmod +x kubectl
+   13  mkdir -p ~/.local/bin/kubectl
+   14  mv ./kubectl ~/.local/bin/kubectl
+   15  kubectl version --client
+   16  ls
+   17  curl -LO https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
+   18  $(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)
+   19  curl -LO https://github.com/kubernetes/kops/releases/download/v1.20.0/kops-linux-amd64
+   20  chmod +x kops-linux-amd64
+   21  sudo mv kops-linux-amd64 /usr/local/bin/kops
+   22  kops
+   23  aws s3 ls
+   24  kops create cluster --name=kops.team141.tk --state=s3://k8-buckettt-123 --zones=us-east-1c,us-east-1b --node-count=2 --node-size=t3.medium --master-size=t3.medium --dns-zone=kops.team141.tk --node-volume-size=8 --master-volume-size=8
+   25  kops update cluster --name kops.team141.tk --state=s3://k8-buckettt-123 --yes --admin
+   26  kops create secret --name kops.team141.tk sshpublickey admin -i ~/.ssh/id_rsa.pub
+   27  kops create secret --name kops.team141.tk --state=s3://k8-buckettt-123 sshpublickey admin -i ~/.ssh/id_rsa.pub
+   28  ssh-keygen
+   29  kops create secret --name kops.team141.tk --state=s3://k8-buckettt-123 sshpublickey admin -i ~/.ssh/id_rsa.pub
+   30  kops create cluster --name=kops.team141.tk --state=s3://k8-buckettt-123 --zones=us-east-1c,us-east-1b --node-count=2 --node-size=t3.medium --master-size=t3.medium --dns-zone=kops.team141.tk --node-volume-size=8 --master-volume-size=8
+   31  kops update cluster --name kops.team141.tk --state=s3://k8-buckettt-123 --yes --admin
+   32  kops validate cluster --name kops.team141.tk --state=s3://k8-buckettt-123
+   33  kubectl get nodes
+   34  kubectl get pods
+   35  kubectl run nginx --image=nginx
+   36  kubectl get pods
+   37  kubectl get nodes
+   38  kubectl get pods
+   39  kops delete cluster --name kops.team141.tk --state=s3://k8-buckettt-123
+   40  kops delete cluster --name kops.team141.tk --state=s3://k8-buckettt-123 --yes
+   41  kubectl get nodes
+   42  kops update cluster --name kops.team141.tk --state=s3://k8-buckettt-123  --yes --admin
+   43  kops validate cluster --name kops.team141.tk --state=s3://k8-buckettt-123
+   44  kubectl get nodes
+   45  kubectl  get pods
+   46  kubectl run nginx --image=nginx
+   47  kubectl get pods
+   48  kops delete cluster --name kops.team141.tk --state=s3://k8-buckettt-123 --yes
+   49  kops create cluster --name=kops.team141.tk --state=s3://k8-buckettt-123 --zones=us-east-1c,us-east-1b --node-count=2 --node-size=t3.medium --master-size=t3.medium --dns-zone=kops.team141.tk --node-volume-size=8 --master-volume-size=8
+   50  kops update cluster --name kops.team141.tk --state=s3://k8-buckettt-123  --yes --admin
+   51  kops validate cluster --name kops.team141.tk --state=s3://k8-buckettt-123
+   52  kubectl get nodes
+   53  kubectl getpods
+   54  kubectl get pods
+   55  kubectl get all
+   56  kubectl get all --all-namespaces
+   57  clear
+   58  pwd
+   59  ls
+   60  ls -a
+   61  cat .kube/config 
+   62  clear
+   63  kubectl get nodes
+   64  kubectl get nodes ip-172-20-47-43.ec2.internal -o yaml
+   65  clear
+   66  kubectl get nodes
+   67  kubectl describe node ip-172-20-47-43.ec2.internal -o yaml
+   68  kubectl describe node ip-172-20-47-43.ec2.internal
+   69  clear
+   70  kubectl get ns
+   71  kubectl get ns vprofile
+   72  kubectl create ns vprofile
+   73  kubectl get ns
+   74  kubectl get pod
+   75  kubectl get pod -n kube-system
+   76  clear
+   77  kubectl get all
+   78  kubectl get all --all-namespaces
+   79  kubectl get pod --all-namespaces
+   80  clear
+   81  kubectl run nginx --image=nginx
+   82  kubectl get pod
+   83  kubectl describe pod nginx
+   84  clear
+   85  kubectl describe pod nginx
+   86  kubectl get pod nginx
+   87  kubectl des
+   88  kubectl get pod nginx -o yaml
+   89  kubectl get pod
+   90  kubectl delete pod nginx
+   91  vim nginxpod.yaml
+   92  kubectl apply -f nginxpod.yaml 
+   93  kubectl get pod
+   94  kubectl delete -f nginxpod.yaml 
+   95  kubectl get pod
+   96  kubectl run web01 --image=nginx --dry-run=client -o yaml
+   97  kubectl run web01 --image=nginx --dry-run=client -o yaml > nginxpod.yaml
+   98  vim nginxpod.yaml
+   99  kubectl apply -f nginxpod.yaml
+  100  kubectl describe pod web01
+  101  kubectl edit pod web01
+  102  clear
+  103  kubectl get pod 
+  104  kubectl describe pod web01
+  105  ls
+  106  ls /home/ubuntu/
+  107  mv /home/ubuntu/Kubernetes_definitions.zip .
+  108  apt install unzip -y
+  109  clear
+  110  unzip Kubernetes_definitions.zip 
+  111  ls
+  112  cd Kubernetes_definitions/
+  113  l
+  114  ls first-app/
+  115  cd first-app/
+  116  cat helloworld.yml 
+  117  kubectl apply -f helloworld.yml 
+  118  kubectl get pods
+  119  cd
+  120  ls
+  121  kubectl get pods
+  122  kops delete cluster --name kops.team141.tk --state=s3://k8-buckettt-123 --yes
+  123  kubectl get all --all=namespaces
+  124  kubectl get all
+  125  fubctl get nodes
+  126  kubctl get nodes
+  127  kubectl get nodes
+  128  kops update cluster --name kops.team141.tk --state=s3://k8-buckettt-123  --yes --admin
+  129  ls
+  130  cd Kubernetes_definitions/
+  131  ls
+  132  cd first-app/
+  133  ls
+  134  kubectl apply -f helloworld.yml 
+  135  kubectl get pods
+  136  cat helloworld-nodeport-service.yml 
+  137  cat helloworld.yml 
+  138  vim helloworld-nodeport-service.yml 
+  139  kubectl apply -f helloworld-nodeport-service.yml 
+  140  vim helloworld-nodeport-service.yml 
+  141  kubectl apply -f helloworld-nodeport-service.yml 
+  142  kubectl get pod
+  143  kubectl get svc
+  144  kubectl describe svc helloworld-service
+  145  kubectl describe pod nodehelloworld.example.com
+  146  kubectl describe pod nodehelloworld.example.com | grep -i ip
+  147  vim helloworld-nodeport-service.yml 
+  148  kubectl apply -f helloworld-nodeport-service.yml 
+  149  kubectl get nodes -o
+  150  kubectl get nodes -o yaml
+  151  kubectl get nodes -o wide
+  152  kubectl get svc
+  153  kubectl get pod
+  154  cat helloworld.yml 
+  155  cat helloworld-nodeport-service.yml 
+  156  cat helloworld.yml helloworld-nodeport-service.yml 
+  157  vim helloworld.yml 
+  158  vim helloworld-nodeport-service.yml 
+  159  kubectl apply -f helloworld.yml 
+  160  kubectl apply -f helloworld-nodeport-service.yml 
+  161  vim helloworld.yml 
+  162  kubectl apply -f helloworld.yml 
+  163  vim helloworld-nodeport-service.yml 
+  164  kubectl apply -f helloworld-nodeport-service.yml 
+  165  kubectl get pod
+  166  kubectl get svc
+  167  kubectl describe pod nodehelloworld.example.com
+  168  cd Kubernetes_definitions/first-app/
+  169  ls
+  170  cat helloworld-service.yml 
+  171  kubectl -f helloworld-service.yml 
+  172  kubectl apply -f helloworld-service.yml 
+  173  kubectl get svc
+  174  kubectl delete -f svc helloworld-service.yml 
+  175  kubectl get svc 
+  176  kubectl delete helloworld-service
+  177  kubectl delete svc helloworld-service
+  178  kubectl get svc 
+  179  kubectl get pod
+  180  kubectl delete pod nodehelloworld.example.com
+  181  kubectl get pod
+  182  ls
+  183  kubectl get svc
+  184  cd ..
+  185  cp -r first-app my-app
+  186  cd my-app/
+  187  ls
+  188  mv helloworld.yml app.yml
+  189  mv helloworld-nodeport-service.yml app-nodeport.yml
+  190  mv helloworld-service.yml app-loadbal.yml
+  191  ls
+  192  vim app.yml 
+  193  vim app-nodeport.yml 
+  194  vim app-loadbal.yml 
+  195  kubectl apply -f app.yml 
+  196  kubectl apply -f app-nodeport.yml 
+  197  kubectl get pod
+  198  kubectl describe pod fasionapp
+  199  kubectl get pod
+  200  kubectl describe pod fasionapp
+  201  kubectl get svc
+  202  kubectl describe svc fasion-service
+  203  kubectl apply -f app-loadbal.yml 
+  204  kubectl get svc
+  205  vim app.yml 
+  206  kubectl apply -f app.yml 
+  207  kubectl get pod
+  208  kubectl delete pod fasionapp
+  209  kubectl apply -f app.yml 
+  210  kubectl apply -f app-nodeport.yml 
+  211  kubectl apply -f app-loadbal.yml 
+  212  kubectl get svc
+  213  kubectl describe svc fasion-service
+  214  kubectl delete svc fasion-service
+  215  kubectl apply -f app-loadbal.yml 
+  216  kubectl describe svc fasion-service
+  217  kubectl delete svc fasion-service
+  218  kubectl get svc
+  219  kubectl get pod
+  220  kubectl delete pod fasionapp
+  221  kubectl get pod
+  222  cd
+  223  kops delete cluster --name kops.team141.tk --state=s3://k8-buckettt-123 --yes
+  224  #kops create cluster --name=kops.team141.tk --state=s3://k8-buckettt-123 --zones=us-east-1c,us-east-1b --node-count=2 --node-size=t2.micro --master-size=t2.micro --dns-zone=kops.team141.tk --node-volume-size=8 --master-volume-size=8
+  225  kops create cluster --name=kops.team141.tk --state=s3://k8-buckettt-123 --zones=us-east-1c,us-east-1b --node-count=2 --node-size=t2.micro --master-size=t2.micro --dns-zone=kops.team141.tk --node-volume-size=8 --master-volume-size=8
+  226  kops create cluster --name=kops.team141.tk --state=s3://k8-buckettt-123 --zones=us-east-1a,us-east-1b --node-count=2 --node-size=t2.micro --master-size=t2.micro --dns-zone=kops.team141.tk --node-volume-size=8 --master-volume-size=8
+  227  kops create cluster --name=kops.team141.tk --state=s3://k8-buckettt-123 --zones=us-east-1c,us-east-1b --node-count=2 --node-size=t3.medium --master-size=t3.medium --dns-zone=kops.team141.tk --node-volume-size=8 --master-volume-size=8
+  228  kops validate cluster --name kops.team141.tk --state=s3://k8-buckettt-123
+  229  aws ec2 create-volume --availability-zone-us-east-1c --size=3 --volume-type=gp2
+  230  aws ec2 create-volume --availability-zone=us-east-1c --size=3 --volume-type=gp2
+  231  aws configure
+  232  aws ec2 create-volume --availability-zone=us-east-1c --size=3 --volume-type=gp2
+  233  kops validate cluster --name kops.team141.tk --state=s3://k8-buckettt-123
+  234  kubectl get nodes --show-labels 
+  235  kubectl get nodes 
+  236  kubectl describe node ip-172-20-66-148.ec2.internal | grep ip 
+  237  kubectl describe node ip-172-20-66-148.ec2.internal | grepus-east-1
+  238  kubectl describe node ip-172-20-66-148.ec2.internal | grep us-east-1
+  239  kubectl label nodes ip-172-20-66-148.ec2.internal zone=us-east-1c
+  240  kubectl label nodes ip-172-20-47-54.ec2.internal zone=us-east-1c
+  241  git clone https://github.com/devopshydclub/vprofile-project.git
+  242  git status
+  243  cd vprofile-project/
+  244  git status
+  245  git checkout kube-app
+  246  git status
+  247  ls
+  248  cd kubernetes/
+  249  ls
+  250  cat app.yml 
+  251  cd ..
+  252  ls
+  253  cd kubernetes/
+  254  ls
+  255  cd vpro-app/
+  256  ls
+  257  cat app-secret.yml 
+  258  ls
+  259  vim vprodbdep.yml 
+  260  ls
+  261  cd vprofile-project/kubernetes/vpro-app/
+  262  ls
+  263  kubectl get nodes --show-labels
+  264  vim vprodbdep.yml 
+  265  kubectl apply -f app-secret.yml vprodbdep.yml 
+  266  kubectl apply -f app-secret.yml
+  267  kubectl apply -f vprodbdep.yml 
+  268  kubectl get nodes
+  269  kubectl get svc
+  270  kubectl get deploy
+  271  kubectl describe deploy vprodb
+  272  kubectl get pod
+  273  kubectl describe pod vprodb-79dcf56947-fb49w
+  274  kubectl apply -f vprodbdep.yml 
+  275  kubectl delete pod vprodb-79dcf56947-fb49w
+  276  kubectl apply -f vprodbdep.yml 
+  277  kubectl get pod
+  278  kubectl describe pod vprodb-79dcf56947-sgr2f
+  279  ls
+  280  vim vprodbdep.yml 
+  281  cat vprodbdep.yml 
+  282  vim vprodbdep.yml 
+  283  ls
+  284  ls -a
+  285  rm -rf .vprodbdep.yml.swp 
+  286  vim vprodbdep.yml 
+  287  cat vprodbdep.yml 
+  288  kubectl get pod
+  289  kubectl delete pod vprodb-79dcf56947-sgr2f
+  290  kubectl apply -f vprodbdep.yml 
+  291  kubectl get pod
+  292  kubectl describe pod prodb-79dcf56947-jqwbr
+  293  kubectl describe pod vprodb-79dcf56947-jqwbr
+  294  kubectl get pod
+  295  kubectl describe pod vprodb-79dcf56947-jqwbr
+  296  kubectl get pod
+  297  kubectl logs vprodb-79dcf56947-jqwbr
+  298  clear
+  299  ls
+  300  vim db-CIP.yml 
+  301  vim mcdep.yml 
+  302  vim mc-CIP.yml 
+  303  vim db-CIP.yml 
+  304  vim rmq-dep.yml 
+  305  vim rmq-CIP-service.yml 
+  306  vim vproappdep.yml 
+  307  vim vproapp-service.yml 
+  308  kubectl apply -f .
+  309  kubectl get pods
+  310  kubectl get svc
+  311  kubectl describe svc vproapp-service
+  312  kubectl get svc
+  313  kubectl get pods
+  314  kubectl delete -f .
+  315  kops delete cluster --name kops.team141.tk --state=s3://k8-buckettt-123 --yes
+  316  ls
+  317  history > kuberneteshistory.txt
